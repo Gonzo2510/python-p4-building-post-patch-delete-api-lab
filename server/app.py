@@ -18,9 +18,11 @@ db.init_app(app)
 def home():
     return '<h1>Bakery GET-POST-PATCH-DELETE API</h1>'
 
-@app.route('/bakeries')
+@app.route('/bakeries', methods=['GET', 'POST'])
 def bakeries():
+
     bakeries = [bakery.to_dict() for bakery in Bakery.query.all()]
+    
     return make_response(  bakeries,   200  )
 
 @app.route('/bakeries/<int:id>')
